@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-fixed: #a98fff;
+  --color-surface-variant: #222532;
+  --color-primary-dim: #7e51ff;
+  --color-secondary-fixed: #26e6ff;
+  --color-surface-bright: #282b3a;
+  --color-tertiary-fixed: #ff8fa9;
+  --color-background: #0c0e17;
+  --color-on-tertiary-fixed-variant: #770033;
+  --color-on-surface-variant: #aaaab7;
+  --color-surface-container-low: #11131d;
+  --color-tertiary: #ff6c95;
+  --color-primary-fixed-dim: #9c7eff;
+  --color-surface: #0c0e17;
+  --color-on-tertiary: #48001c;
+  --color-on-primary-container: #280072;
+  --color-on-primary: #340090;
+  --color-on-secondary: #004d57;
+  --color-on-secondary-fixed: #003a42;
+  --color-surface-container: #171924;
+  --color-outline: #737580;
+  --color-on-tertiary-fixed: #380014;
+  --color-primary: #b6a0ff;
+  --color-tertiary-fixed-dim: #ff769b;
+  --color-error-container: #a70138;
+  --color-secondary-dim: #00d4ec;
+  --color-tertiary-container: #fd3e80;
+  --color-inverse-primary: #6834eb;
+  --color-error: #ff6e84;
+  --color-on-secondary-fixed-variant: #005964;
+  --color-surface-tint: #b6a0ff;
+  --color-on-primary-fixed-variant: #32008a;
+  --color-on-secondary-container: #e8fbff;
+  --color-surface-dim: #0c0e17;
+  --color-on-tertiary-container: #100003;
+  --color-error-dim: #d73357;
+  --color-primary-container: #a98fff;
+  --color-surface-container-high: #1c1f2b;
+  --color-surface-container-highest: #222532;
+  --color-inverse-surface: #faf8ff;
+  --color-secondary: #00e3fd;
+  --color-outline-variant: #464752;
+  --color-on-background: #f0f0fd;
+  --color-on-error-container: #ffb2b9;
+  --color-on-surface: #f0f0fd;
+  --color-surface-container-lowest: #000000;
+  --color-tertiary-dim: #ff6c95;
+  --color-secondary-fixed-dim: #00d7f0;
+  --color-on-primary-fixed: #000000;
+  --color-inverse-on-surface: #53545f;
+  --color-secondary-container: #006875;
+  --color-on-error: #490013;
+
+  --font-headline: "Space Grotesk", "sans-serif";
+  --font-body: "Manrope", "sans-serif";
+  --font-label: "Manrope", "sans-serif";
+
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-xxl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+body { font-family: 'Manrope', sans-serif; }
+.font-headline { font-family: 'Space Grotesk', sans-serif; }
+
+.glass-card {
+    background: rgba(5, 6, 8, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(182, 160, 255, 0.05);
+}
+
+.glow-border:focus-within {
+    box-shadow: 0 0 15px -3px rgba(0, 227, 253, 0.3);
+}
+
+.neon-glow {
+    box-shadow: 0 0 20px rgba(182, 160, 255, 0.15);
+}
+
+.ethereal-aura {
+    background: radial-gradient(circle, rgba(126, 81, 255, 0.08) 0%, rgba(12, 14, 23, 0) 70%);
+}
+
+/* ===== STUDENT LOGIN — LIGHT SKY-BLUE THEME (matches teacher dashboard) ===== */
+
+/* Sky-blue gradient background — matching dashboard bg-split */
+.bg-split {
+    background: linear-gradient(to bottom, #3b82f6 50%, #eef4fb 50%) !important;
+    position: relative;
+    min-height: 100vh;
+}
+
+.bg-split::before {
+    display: none;
+}
+
+/* ── Header bar — blue glass matching the top half ── */
+.bg-split > header {
+    background: rgba(37, 99, 235, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Brand name in header ── */
+.bg-split header span[class*="bg-linear"],
+.bg-split header span[class*="bg-clip"],
+.bg-split header span[class*="text-transparent"] {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: 1.35rem !important;
+    letter-spacing: -0.01em;
+}
+
+/* ── Heading ── */
+.bg-split h1 {
+    color: #1e3a5f !important;
+    font-weight: 800 !important;
+    font-size: 2.75rem !important;
+    text-shadow: none;
+    letter-spacing: -0.03em;
+}
+
+.bg-split h1 span {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    filter: none;
+}
+
+/* Subtitle */
+.bg-split h1 + p {
+    color: #000000 !important;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+}
+
+/* ── Glass login card (light theme) ── */
+.bg-split main > div > div:last-child > div:last-child {
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    border-radius: 1.25rem !important;
+    box-shadow:
+        0 8px 32px rgba(31, 38, 135, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.35s ease;
+}
+
+.bg-split main > div > div:last-child > div:last-child:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 40px rgba(31, 38, 135, 0.15),
+        0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Inner aura glow — subtle blue instead of purple ── */
+.bg-split main .absolute.rounded-full {
+    background: rgba(59, 130, 246, 0.1) !important;
+    filter: blur(60px);
+}
+
+/* ── Labels — black, professional ── */
+.bg-split label {
+    color: #000000 !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+/* Labels highlight on focus */
+.bg-split .space-y-2:focus-within > label,
+.bg-split .space-y-2:has(input:focus) > label,
+.bg-split div:focus-within > label {
+    color: #2563eb !important;
+}
+
+/* ── Input fields — light with glass feel ── */
+.bg-split input[type="text"] {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 2px solid rgba(209, 213, 219, 0.8) !important;
+    border-radius: 0.5rem !important;
+    color: #000000 !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem 0.75rem 3rem !important;
+    transition: all 0.25s ease !important;
+    caret-color: #2563eb;
+}
+
+/* Placeholders — clearly lighter than typed text */
+.bg-split input[type="text"]::placeholder {
+    color: #9ca3af !important;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.bg-split input[type="text"]:focus {
+    background: #ffffff !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+    outline: none;
+}
+
+.bg-split input[type="text"]:hover:not(:focus) {
+    border-color: #9ca3af !important;
+}
+
+/* ── Input icons — gray by default, blue on focus ── */
+.bg-split .group .pointer-events-none,
+.bg-split div > div.absolute {
+    color: #9ca3af !important;
+    transition: color 0.25s ease;
+}
+
+.bg-split .group:focus-within .pointer-events-none,
+.bg-split div:focus-within > div.absolute {
+    color: #3b82f6 !important;
+}
+
+/* ── Login Button — solid blue gradient (matches teacher Sign In) ── */
+.bg-split button[type="submit"] {
+    border-radius: 0.75rem !important;
+    overflow: hidden;
+    position: relative;
+    padding: 0 !important;
+}
+
+/* Hide the old gradient border layer */
+.bg-split button[type="submit"] > div:first-child {
+    background: linear-gradient(to right, #1d4ed8, #2563eb) !important;
+    opacity: 1 !important;
+}
+
+/* Hide the inner bg div and make text white */
+.bg-split button[type="submit"] > div:last-child {
+    background: transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+.bg-split button[type="submit"] > div:last-child span {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+}
+
+/* Button shimmer — subtle white sweep */
+.bg-split button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 40%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 60%,
+        transparent 100%
+    );
+    animation: btn-shimmer 4s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes btn-shimmer {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(50%); }
+}
+
+.bg-split button[type="submit"]:hover {
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+    transform: translateY(-1px);
+}
+
+.bg-split button[type="submit"]:active {
+    transform: scale(0.98) translateY(0);
+}
+
+/* ── Nav links — white on blue header ── */
+.bg-split header a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.75) !important;
+    transition: color 0.3s ease;
+}
+
+.bg-split header a:hover {
+    color: #ffffff !important;
+}
+
+.bg-split header a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.bg-split header a:hover::after {
+    width: 60%;
+}
+
+/* ── Scrollbar — light theme ── */
+.bg-split::-webkit-scrollbar {
+    width: 6px;
+}
+.bg-split::-webkit-scrollbar-track {
+    background: transparent;
+}
+.bg-split::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 3px;
+}
+
+/* ── Entrance animation ── */
+.bg-split main > div {
+    animation: login-entrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes login-entrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── Focus-ring accessibility — blue ── */
+.bg-split input:focus-visible,
+.bg-split button:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+}
