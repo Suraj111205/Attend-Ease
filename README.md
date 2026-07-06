@@ -95,7 +95,7 @@ Displayed on Dashboard
 ---
 
 # Environment Variables
-
+#I have not implement this in my project as this is important regarding the security issue. You guys can do this.
 Create a `.env` file inside the **server** folder.
 
 Example:
