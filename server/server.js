@@ -10,7 +10,14 @@ const mongoURI = process.env.MONGO_URI;
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    /\.vercel\.app$/         // allows all Vercel preview and production URLs
+  ],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 mongoose.connect(mongoURI)
