@@ -11,7 +11,7 @@ const Period = () => {
   useEffect(() => {
     const fetchAttendanceData = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/periodwise-attendance");
+        const response = await fetch(`${import.meta.env.VITE_NODE_SERVER}/api/periodwise-attendance`);
         const data = await response.json();
         setAttendanceData(data);
       } catch (error) {
@@ -211,3 +211,5 @@ const Period = () => {
 };
 
 export default Period;
+
+

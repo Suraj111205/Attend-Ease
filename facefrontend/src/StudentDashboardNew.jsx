@@ -18,7 +18,7 @@ const StudentDashboardNew = () => {
         // ── NEW: conducted-attendance QR (multiple periods) ──
         if (data.type === 'conducted-attendance' && Array.isArray(data.periods) && data.periods.length > 0) {
           setIsScanning(false);
-          const res = await axios.post('http://localhost:5001/api/attendance/mark-conducted', {
+          const res = await axios.post(`${import.meta.env.VITE_NODE_SERVER}/api/attendance/mark-conducted`, {
             rollno: dashboardData.student.rollno,
             periods: data.periods,
             date: data.date || new Date().toISOString().split('T')[0]
@@ -35,20 +35,20 @@ const StudentDashboardNew = () => {
           alert(msg.trim() || res.data.message);
 
           // Refresh dashboard
-          fetch(`http://localhost:5001/api/student/${dashboardData.student.rollno}/dashboard`)
+          fetch(`${import.meta.env.VITE_NODE_SERVER}/api/student/${dashboardData.student.rollno}/dashboard`)
             .then(res => res.json())
             .then(d => { if (d.student) setDashboardData(d); });
 
         // ── LEGACY: single-period QR (backward compatibility) ──
         } else if (data.type === 'periodwise-attendance' && data.period) {
           setIsScanning(false);
-          await axios.post('http://localhost:5001/api/periodwise-attendance', {
+          await axios.post(`${import.meta.env.VITE_NODE_SERVER}/api/periodwise-attendance`, {
             rollno: dashboardData.student.rollno,
             period: data.period,
             recognizedAt: new Date().toISOString()
           });
           alert(`✅ Attendance marked for ${data.period}`);
-          fetch(`http://localhost:5001/api/student/${dashboardData.student.rollno}/dashboard`)
+          fetch(`${import.meta.env.VITE_NODE_SERVER}/api/student/${dashboardData.student.rollno}/dashboard`)
             .then(res => res.json())
             .then(d => { if (d.student) setDashboardData(d); });
 
@@ -73,7 +73,7 @@ const StudentDashboardNew = () => {
       navigate('/student-login');
       return;
     }
-    fetch(`http://localhost:5001/api/student/${rollNo}/dashboard`)
+    fetch(`${import.meta.env.VITE_NODE_SERVER}/api/student/${rollNo}/dashboard`)
       .then(res => res.json())
       .then(data => {
         if (data.student) setDashboardData(data);
@@ -439,3 +439,5 @@ const StudentDashboardNew = () => {
 };
 
 export default StudentDashboardNew;
+
+

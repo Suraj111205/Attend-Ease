@@ -26,7 +26,7 @@ const Signin = ({ classname }) => {
         }
 
         try {
-            const response = await fetch("http://localhost:5001/signup", {
+            const response = await fetch(`${import.meta.env.VITE_NODE_SERVER}/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const Signin = ({ classname }) => {
         }
 
         try {
-            const response = await fetch("http://localhost:5001/signin", {
+            const response = await fetch(`${import.meta.env.VITE_NODE_SERVER}/signin`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -211,3 +211,5 @@ const Signin = ({ classname }) => {
 };
 
 export default Signin;
+
+

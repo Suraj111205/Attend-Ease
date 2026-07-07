@@ -57,7 +57,7 @@ const Addstudent = () => {
     }
 
     try {
-      const checkRes = await fetch(`http://localhost:5001/api/students/check/${encodeURIComponent(student.rollno)}?course=${encodeURIComponent(student.course)}`);
+      const checkRes = await fetch(`${import.meta.env.VITE_NODE_SERVER}/api/students/check/${encodeURIComponent(student.rollno)}?course=${encodeURIComponent(student.course)}`);
       const checkData = await checkRes.json();
       if (checkData.exists) {
         alert("A student with this Roll Number is already enrolled in this course.");
@@ -75,7 +75,7 @@ const Addstudent = () => {
       const imageData = canvas.toDataURL('image/jpeg');
 
       try {
-        const response = await fetch('http://localhost:5000/enroll', {
+        const response = await fetch(`${import.meta.env.VITE_PYTHON_SERVER}/enroll`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ rollno: student.rollno, image: imageData })
@@ -87,7 +87,7 @@ const Addstudent = () => {
         }
         alert(result.message);
 
-        const dataResponse = await fetch('http://localhost:5001/api/students', {
+        const dataResponse = await fetch(`${import.meta.env.VITE_NODE_SERVER}/api/students`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(student)
@@ -195,3 +195,5 @@ const Addstudent = () => {
 };
 
 export default Addstudent;
+
+

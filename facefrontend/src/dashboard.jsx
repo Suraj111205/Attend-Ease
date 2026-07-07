@@ -49,7 +49,7 @@ const Dashboard = () => {
         const recognizedAtInput = document.querySelector('input[name="recognizedAt"]').value;
 
         try {
-            const res = await axios.post("http://localhost:5001/api/attendance", {
+            const res = await axios.post(`${import.meta.env.VITE_NODE_SERVER}/api/attendance`, {
                 name,
                 rollno,
                 course,
@@ -67,7 +67,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchAttendance = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/periodwise-attendance');
+                const response = await axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/periodwise-attendance`);
                 setAttendance(response.data);
             } catch (err) {
                 console.error("Error fetching attendance:", err);
@@ -76,7 +76,7 @@ const Dashboard = () => {
 
         const fetchStudents = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/students');
+                const response = await axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/students`);
                 setStudents(response.data);
             } catch (err) {
                 console.error("Error fetching students:", err);
@@ -85,7 +85,7 @@ const Dashboard = () => {
 
         const fetchConductedLectures = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/conducted-lectures/today');
+                const response = await axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/conducted-lectures/today`);
                 setSavedConductedPeriods(response.data.periods || []);
                 setConductedPeriods(response.data.periods || []);
             } catch (err) {
@@ -113,7 +113,7 @@ const Dashboard = () => {
         setConductedMsg('');
         try {
             const today = new Date().toISOString().split('T')[0];
-            await axios.post('http://localhost:5001/api/conducted-lectures', {
+            await axios.post(`${import.meta.env.VITE_NODE_SERVER}/api/conducted-lectures`, {
                 date: today,
                 periods: conductedPeriods
             });
@@ -363,3 +363,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+

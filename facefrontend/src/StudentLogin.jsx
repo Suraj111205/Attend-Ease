@@ -15,7 +15,7 @@ const StudentLogin = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/student/login', {
+      const response = await fetch(`${import.meta.env.VITE_NODE_SERVER}/api/student/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rollno: rollNo, name })
@@ -121,3 +121,5 @@ const StudentLogin = () => {
 };
 
 export default StudentLogin;
+
+

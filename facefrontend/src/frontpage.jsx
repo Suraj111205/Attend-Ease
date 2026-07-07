@@ -21,7 +21,7 @@ const Front = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/students");
+        const response = await axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/students`);
         setStudents(response.data);
       } catch (err) {
         console.error("Error fetching students:", err);
@@ -30,7 +30,7 @@ const Front = () => {
 
     const fetchPresentCount = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/periodwise-attendance");
+        const response = await axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/periodwise-attendance`);
         const today = new Date().toISOString().split('T')[0];
         // Filter unique Roll numbers present today
         const todayLogs = response.data.filter(log => {
@@ -68,7 +68,7 @@ const Front = () => {
     const imageData = canvas.toDataURL("image/jpeg");
 
     try {
-      const response = await axios.post("http://localhost:5000/recognize", { image: imageData });
+      const response = await axios.post(`${import.meta.env.VITE_PYTHON_SERVER}/recognize`, { image: imageData });
       const rollno = response.data.rollno;
 
       setRecognizedName(rollno);
@@ -96,7 +96,7 @@ const Front = () => {
 
       // Submit period-wise attendance
       try {
-        const res = await axios.post("http://localhost:5001/api/periodwise-attendance", {
+        const res = await axios.post(`${import.meta.env.VITE_NODE_SERVER}/api/periodwise-attendance`, {
           rollno,
           recognizedAt,
           period: currentPeriod
@@ -110,7 +110,7 @@ const Front = () => {
 
         // Re-fetch the present count to update the UI immediately
         try {
-          const countResponse = await axios.get("http://localhost:5001/api/periodwise-attendance");
+          const countResponse = await axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/periodwise-attendance`);
           const today = new Date().toISOString().split('T')[0];
           const todayLogs = countResponse.data.filter(log => {
             const logDate = new Date(log.recognizedAt).toISOString().split('T')[0];
@@ -277,3 +277,5 @@ const Front = () => {
 };
 
 export default Front;
+
+

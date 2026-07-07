@@ -5,8 +5,15 @@ import numpy as np
 import os
 import base64
 import requests
+from dotenv import load_dotenv
 
-NODE_SERVER = 'http://localhost:5001'
+load_dotenv()
+
+NODE_SERVER = os.getenv('NODE_SERVER', 'http://localhost:5001')
+
+# Always resolve paths relative to this file, not the working directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FACES_DIR = os.path.join(BASE_DIR, 'faces')
 
 app = Flask(__name__)
 CORS(app)
@@ -20,7 +27,7 @@ def enroll_person():
     if not rollno or not image_data:
         return jsonify({'message': 'Name or image data is missing'}), 400
 
-    folder = os.path.join("faces", rollno)
+    folder = os.path.join(FACES_DIR, rollno)
     os.makedirs(folder, exist_ok=True)
 
     try:
@@ -62,8 +69,8 @@ def train_model():
     label_map: dict[str, int] = {}
     current_label: int = 0
 
-    for person_rollno in os.listdir("faces"):
-        person_folder = os.path.join("faces", person_rollno)
+    for person_rollno in os.listdir(FACES_DIR):
+        person_folder = os.path.join(FACES_DIR, person_rollno)
         if not os.path.isdir(person_folder):
             continue
 
@@ -170,4 +177,5 @@ def recognize_and_mark():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    flask_port = int(os.getenv('FLASK_PORT', 5000))
+    app.run(host="0.0.0.0", port=flask_port, debug=False)

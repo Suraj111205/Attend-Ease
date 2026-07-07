@@ -1,13 +1,14 @@
+require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
 
-const mongoURI = 'mongodb+srv://admin:admin123@cluster0.syerwma.mongodb.net/';
+const mongoURI = process.env.MONGO_URI;
 
 const app = express();
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(bodyParser.json());

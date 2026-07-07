@@ -15,8 +15,8 @@ const Enrolled = () => {
     const fetchStudentsAndAttendance = async () => {
       try {
         const [studentsRes, attendanceRes] = await Promise.all([
-          axios.get('http://localhost:5001/api/students'),
-          axios.get('http://localhost:5001/api/attendance'),
+          axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/students`),
+          axios.get(`${import.meta.env.VITE_NODE_SERVER}/api/attendance`),
         ]);
 
         const sortedStudents = studentsRes.data.sort((a, b) => 
@@ -69,7 +69,7 @@ const Enrolled = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this course enrollment and its logs?")) {
       try {
-        await axios.delete(`http://localhost:5001/api/students/${id}`);
+        await axios.delete(`${import.meta.env.VITE_NODE_SERVER}/api/students/${id}`);
         setStudents(students.filter(student => student._id !== id));
       } catch (err) {
         console.error("Error deleting student:", err);
@@ -228,3 +228,5 @@ const Enrolled = () => {
 };
 
 export default Enrolled;
+
+
