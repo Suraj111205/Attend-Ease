@@ -14,6 +14,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'http://localhost:5174',
+    'https://attend-ease-kohl.vercel.app', // production Vercel URL
     /\.vercel\.app$/         // allows all Vercel preview and production URLs
   ],
   credentials: true
@@ -525,7 +526,7 @@ app.get('/api/periodwise-attendance', async (req, res) => {
   try {
     const logs = await PeriodwiseAttendanceLog.find().sort({ recognizedAt: -1 });
     res.json(logs);
-  } catch {
+  } catch (err) {
     console.log("Error fetching periodwise logs:", err);
     res.status(500).json({ message: "Failed to fetch periodwise attendance logs" });
   }
